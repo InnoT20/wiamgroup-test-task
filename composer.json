@@ -1,0 +1,72 @@
+{
+  "name": "innot20/wiamgroup-test-task",
+  "description": "Test task for WIAMGROUP",
+  "type": "project",
+  "support": {
+    "source": "https://github.com/yiisoft/yii2"
+  },
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=8.1.0",
+    "yiisoft/yii2": "~2.0.45",
+    "yiisoft/yii2-bootstrap5": "~2.0.2",
+    "yiisoft/yii2-symfonymailer": "~2.0.3",
+    "webmozart/assert": "^1.11",
+    "guzzlehttp/guzzle": "^7.8",
+    "symfony/serializer": "^6.3",
+    "symfony/validator": "^6.3",
+    "symfony/property-access": "^6.3",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "require-dev": {
+    "yiisoft/yii2-debug": "~2.1.0",
+    "yiisoft/yii2-gii": "~2.2.0",
+    "yiisoft/yii2-faker": "~2.0.0",
+    "symfony/var-dumper": "^6.3"
+  },
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    },
+    "process-timeout": 1800,
+    "fxp-asset": {
+      "enabled": false
+    }
+  },
+  "autoload" : {
+    "psr-4" : {
+      "App\\" : "src/"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "yii\\composer\\Installer::postInstall"
+    ],
+    "post-create-project-cmd": [
+      "yii\\composer\\Installer::postCreateProject",
+      "yii\\composer\\Installer::postInstall"
+    ]
+  },
+  "extra": {
+    "yii\\composer\\Installer::postCreateProject": {
+      "setPermission": [
+        {
+          "runtime": "0777",
+          "web/assets": "0777",
+          "yii": "0755"
+        }
+      ]
+    },
+    "yii\\composer\\Installer::postInstall": {
+      "generateCookieValidationKey": [
+        "config/web.php"
+      ]
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+}

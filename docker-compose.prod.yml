@@ -1,0 +1,39 @@
+version: '3'
+services:
+  php:
+    image: innot20/wiamgroup-test-task:latest
+    restart: always
+    environment:
+      YII_ENV: prod
+      YII_DEBUG: false
+      PG_HOST: postgres
+      PG_USER: root
+      PG_PORT: 5432
+      PG_PASSWORD: root
+      PG_DATABASE: wiamgroup
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - postgres
+  nginx:
+    image: innot20/wiamgroup-test-task/nginx:latest
+    restart: always
+    depends_on:
+      - php
+    ports:
+      - "80:80"
+  postgres:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - postgres:/data/postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: wiamgroup
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+volumes:
+  postgres:
+    driver: local

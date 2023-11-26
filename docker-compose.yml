@@ -1,0 +1,36 @@
+version: '3'
+services:
+  php:
+    build:
+      dockerfile: ./docker/php/base/Dockerfile
+      context: .
+    volumes:
+      - ./:/var/www
+    environment:
+      YII_ENV: dev
+      YII_DEBUG: true
+      PG_HOST: postgres
+      PG_USER: root
+      PG_PASSWORD: root
+      PG_DATABASE: wiamgroup
+    depends_on:
+      - postgres
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/config:/etc/nginx/conf.d
+    depends_on:
+      - php
+    ports:
+      - "80:80"
+  postgres:
+    image: postgres:latest
+    volumes:
+      - ./docker/storage/postgres:/var/lib/postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: wiamgroup
