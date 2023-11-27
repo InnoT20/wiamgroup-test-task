@@ -2,6 +2,7 @@ version: '3'
 services:
   php:
     image: innot20/wiamgroup-test-task:latest
+    container_name: php
     restart: always
     environment:
       YII_ENV: prod
@@ -18,6 +19,7 @@ services:
   nginx:
     image: innot20/wiamgroup-test-task/nginx:latest
     restart: always
+    container_name: nginx
     depends_on:
       - php
     ports:
@@ -25,6 +27,7 @@ services:
   postgres:
     image: postgres:latest
     restart: always
+    container_name: postgres
     volumes:
       - postgres:/data/postgres
     environment:
