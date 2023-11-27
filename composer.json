@@ -22,7 +22,8 @@
     "yiisoft/yii2-debug": "~2.1.0",
     "yiisoft/yii2-gii": "~2.2.0",
     "yiisoft/yii2-faker": "~2.0.0",
-    "symfony/var-dumper": "^6.3"
+    "symfony/var-dumper": "^6.3",
+    "roave/security-advisories": "dev-latest"
   },
   "config": {
     "allow-plugins": {
