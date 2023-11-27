@@ -9,7 +9,7 @@ Requirements:
 
 Requirements:
 - docker
-- docker-compose V2./
+- docker-compose V2
 
 Run deploy.sh script
 ```bash
