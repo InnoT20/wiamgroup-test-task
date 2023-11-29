@@ -12,8 +12,6 @@ services:
       PG_PORT: 5432
       PG_PASSWORD: root
       PG_DATABASE: wiamgroup
-    volumes:
-      - ./:/var/www
     depends_on:
       - postgres
   nginx:
